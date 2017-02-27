@@ -6,6 +6,10 @@ class Executors_Mailchimp extends AbstractExecutor
 
 	public function process()
 	{
+
+        $subject = get_option('woocd_email_subject');
+        $content = get_option('woocd_content');
+
 		add_filter('coupon_generator_customer_email', function() {
             return $_POST['EMAIL'];
         });
@@ -15,16 +19,14 @@ class Executors_Mailchimp extends AbstractExecutor
         });
 
         $couponGenerator = new CouponGenerator();
-        $coupon = $couponGenerator->duplicate('nsltr-2d1f19');
+        $coupon = $couponGenerator->duplicate($this->getCoupon()->code);
 
-        $message = __("Hello lovely person,
-            You are getting this email to let you know that you get a coupon for 10 percent off. 
-            Your coupon code is: %s");
+        $message = $content;
 
         $message = sprintf($message, $coupon->code);
 
         $to = $_POST['EMAIL'];
 
-        wp_mail( $to, __('Your coupon code'), $message );
+        wp_mail( $to, $subject, $message );
 	}
 }

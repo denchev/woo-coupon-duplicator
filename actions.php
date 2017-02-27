@@ -12,5 +12,5 @@ foreach($hooks as $hook) {
     $executorFactory = new ExecutorFactory($hook); // Every tasker to build its own settings 
     $executor = $executorFactory->create();
 
-    add_action($hook, array($executor, 'process'));
+    add_action($hook, array($executor, 'process'), 100);
 }

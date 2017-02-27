@@ -73,7 +73,7 @@ if( ! function_exists( 'woocd_options_page' ) ) {
 				<tr valign="top">
 					<td><?php echo __('Subject', 'woo-coupon-duplicator') ?></td>
 					<td><label for="subject">
-						<input id="subject" type="text" name="woocd_subject" value="<?php echo $subject ?>">
+						<input id="subject" type="text" name="woocd_email_subject" value="<?php echo $subject ?>">
 						<br /><?php echo __( 'Email subject.', 'woo-coupon-duplicator') ?>
 						</label>
 					</td>
@@ -86,7 +86,7 @@ if( ! function_exists( 'woocd_options_page' ) ) {
 					<td><?php echo __('Content', 'woo-coupon-duplicator') ?></td>
 					<td><label for="content">
 						<textarea id="content" name="woocd_content" cols="100" rows="10"><?php echo $content ?></textarea>
-						<br /><?php echo __( 'Email content.', 'woo-coupon-duplicator') ?>
+						<br /><?php echo __( 'Email content. Use %s for the coupon code placeholder.', 'woo-coupon-duplicator') ?>
 						</label>
 					</td>
 				</tr>
@@ -103,6 +103,8 @@ if( ! function_exists( 'woocd_register_settings' ) ) {
 	function woocd_register_settings() {
 		register_setting('woocd', 'woocd_coupon_source');
 		register_setting('woocd', 'woocd_hooks');
+		register_setting('woocd', 'woocd_email_subject');
+		register_setting('woocd', 'woocd_content');
 	}
 
 }
