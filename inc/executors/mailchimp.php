@@ -11,7 +11,7 @@ class Executors_Mailchimp extends AbstractExecutor
         $content = get_option('woocd_content');
 
 		add_filter('coupon_generator_customer_email', function() {
-            return $_POST['EMAIL'];
+            return sanitize_email($_POST['EMAIL']);
         });
 
         add_filter('coupon_generator_expiry_date', function() {
@@ -25,7 +25,7 @@ class Executors_Mailchimp extends AbstractExecutor
 
         $message = sprintf($message, $coupon->code);
 
-        $to = $_POST['EMAIL'];
+        $to = sanitize_email($_POST['EMAIL']);
 
         wp_mail( $to, $subject, $message );
 	}

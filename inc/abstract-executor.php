@@ -1,8 +1,5 @@
 <?php
 
-require_once ABSPATH .  "wp-content/plugins/woocommerce/includes/class-wc-cache-helper.php";
-require_once ABSPATH .  "wp-content/plugins/woocommerce/includes/class-wc-coupon.php";
-
 abstract class AbstractExecutor
 {
 
